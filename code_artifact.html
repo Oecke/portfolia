@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Артем Середа | Портфоліо</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0f172a',
+                        primary: '#0ea5e9',
+                        secondary: '#8b5cf6',
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        fadeUp: "fadeUp 1s ease-out forwards",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        fadeUp: {
+                            "0%": { opacity: 0, transform: "translateY(20px)" },
+                            "100%": { opacity: 1, transform: "translateY(0)" },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2); 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4); 
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);ф
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.3);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #0ea5e9, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased relative selection:bg-primary selection:text-white">
+
+    <!-- Background Animated Blobs -->
+    <div class="fixed inset-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-72 h-72 bg-primary rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-72 h-72 bg-secondary rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob" style="animation-delay: 2s"></div>
+        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-pink-600 rounded-full mix-blend-screen filter blur-[120px] opacity-20 animate-blob" style="animation-delay: 4s"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold tracking-wider text-white">
+                        <span class="text-primary">A</span>S.
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-primary transition-colors text-sm font-medium px-3 py-2 rounded-md">Головна</a>
+                        <a href="#about" class="hover:text-primary transition-colors text-sm font-medium px-3 py-2 rounded-md">Про мене</a>
+                        <a href="#skills" class="hover:text-primary transition-colors text-sm font-medium px-3 py-2 rounded-md">Навички</a>
+                        <a href="#interests" class="hover:text-primary transition-colors text-sm font-medium px-3 py-2 rounded-md">Інтереси</a>
+                        <a href="#contact" class="bg-primary/20 hover:bg-primary/40 text-primary border border-primary/30 transition-all px-4 py-2 rounded-full text-sm font-medium">Контакти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-4xl mx-auto text-center z-10 animate-fadeUp">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full glass border border-white/10 text-sm font-medium text-gray-300">
+                <i class="fa-solid fa-rocket text-primary mr-2"></i> Вітаю у моєму світі
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                Я <span class="text-gradient">Артем Середа</span>
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                Ентузіаст фітнесу, дослідник глибин та технологічний гік.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#about" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium hover:shadow-lg hover:shadow-primary/30 transition-all transform hover:-translate-y-1">
+                    Дізнатись більше
+                </a>
+                <a href="#contact" class="px-8 py-3 rounded-full glass hover:bg-white/10 transition-all font-medium border border-white/20">
+                    Зв'язатись зі мною
+                </a>
+            </div>
+            
+            <div class="mt-20 flex justify-center gap-6 text-gray-400">
+                <i class="fa-solid fa-dumbbell text-2xl hover:text-primary transition-colors cursor-help" title="Fitness"></i>
+                <i class="fa-solid fa-water text-2xl hover:text-secondary transition-colors cursor-help" title="Scuba Diving"></i>
+                <i class="fa-brands fa-linux text-2xl hover:text-white transition-colors cursor-help" title="Linux"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-6xl mx-auto reveal">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+                Про <span class="text-gradient">Мене</span>
+            </h2>
+            
+            <div class="glass rounded-3xl p-8 md:p-12 border border-white/10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 text-gray-300 text-lg leading-relaxed">
+                        <p>
+                            Я глибоко захоплююсь науковим підходом до фітнесу, вивчаю фізіологію фізичних вправ та нутриціологію. Моя поточна мета — стати <strong class="text-white font-semibold">сертифікованим тренером тренажерного залу</strong>, щоб допомагати людям ставати кращими та здоровішими.
+                        </p>
+                        <p>
+                            Окрім спорту на суші, я обожнюю підводний світ і є досвідченим скуба-дайвером. Також я активно цікавлюсь сучасними технологіями та маю досвід роботи з операційними системами на базі Linux.
+                        </p>
+                        <div class="pt-4 flex items-center gap-4">
+                            <div class="h-[1px] flex-1 bg-white/10"></div>
+                            <span class="text-sm font-medium text-gray-400 uppercase tracking-widest">Моє кредо</span>
+                            <div class="h-[1px] flex-1 bg-white/10"></div>
+                        </div>
+                        <p class="text-center italic text-gray-400">
+                            "Дисципліна та постійний розвиток — ключ до будь-яких вершин, чи то в залі, чи то на глибині океану."
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card p-6 rounded-2xl text-center">
+                            <i class="fa-solid fa-heart-pulse text-3xl text-red-400 mb-4"></i>
+                            <h3 class="font-bold text-white">Фітнес</h3>
+                            <p class="text-sm text-gray-400 mt-2">Науковий підхід до тренувань</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl text-center mt-8">
+                            <i class="fa-solid fa-mask-snorkel text-3xl text-blue-400 mb-4"></i>
+                            <h3 class="font-bold text-white">Дайвінг</h3>
+                            <p class="text-sm text-gray-400 mt-2">Дослідження глибин</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl text-center -mt-8">
+                            <i class="fa-solid fa-microchip text-3xl text-purple-400 mb-4"></i>
+                            <h3 class="font-bold text-white">Технології</h3>
+                            <p class="text-sm text-gray-400 mt-2">Linux & IT</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl text-center">
+                            <i class="fa-solid fa-apple-whole text-3xl text-green-400 mb-4"></i>
+                            <h3 class="font-bold text-white">Нутриціологія</h3>
+                            <p class="text-sm text-gray-400 mt-2">Здорове харчування</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto reveal">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+                Мої <span class="text-gradient">Навички</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skill 1 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-primary/20"></div>
+                    <i class="fa-solid fa-dumbbell text-4xl text-primary mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Фітнес та Нутриціологія</h3>
+                    <p class="text-gray-400 text-sm">Глибокі знання в анатомії, фізіології фізичних вправ та складанні планів харчування.</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-secondary/20"></div>
+                    <i class="fa-brands fa-ubuntu text-4xl text-secondary mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Linux / Ubuntu</h3>
+                    <p class="text-gray-400 text-sm">Впевнене налаштування, адміністрування та використання систем на базі Linux.</p>
+                </div>
+
+                <!-- Skill 3: Languages -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group md:col-span-2 lg:col-span-1">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-green-500/20"></div>
+                    <i class="fa-solid fa-language text-4xl text-green-400 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-4">Мови</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex justify-between items-center"><span>Українська</span> <span class="text-xs bg-white/10 px-2 py-1 rounded text-gray-300">Рідна</span></li>
+                        <li class="flex justify-between items-center"><span>Російська</span> <span class="text-xs bg-white/10 px-2 py-1 rounded text-gray-300">Вільна</span></li>
+                        <li class="flex justify-between items-center"><span>Чеська</span> <span class="text-xs bg-white/10 px-2 py-1 rounded text-primary">B1</span></li>
+                        <li class="flex justify-between items-center"><span>Англійська</span> <span class="text-xs bg-white/10 px-2 py-1 rounded text-secondary">A2</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-6xl mx-auto reveal">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+                Сфера <span class="text-gradient">Інтересів</span>
+            </h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="glass-card p-6 flex flex-col items-center justify-center text-center rounded-2xl aspect-square">
+                    <i class="fa-solid fa-person-snowboarding text-3xl text-orange-400 mb-3"></i>
+                    <h4 class="font-medium text-gray-200">Трюкові самокати</h4>
+                </div>
+                
+                <div class="glass-card p-6 flex flex-col items-center justify-center text-center rounded-2xl aspect-square col-span-2 md:col-span-1 lg:col-span-2 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-blue-500/5"></div>
+                    <i class="fa-solid fa-water text-4xl text-blue-400 mb-3"></i>
+                    <h4 class="font-medium text-gray-200 mb-1">Скуба-дайвінг</h4>
+                    <span class="text-xs text-gray-400">PADI Enriched Air / SSI Open Water</span>
+                </div>
+                
+                <div class="glass-card p-6 flex flex-col items-center justify-center text-center rounded-2xl aspect-square">
+                    <i class="fa-solid fa-chess-knight text-3xl text-gray-300 mb-3"></i>
+                    <h4 class="font-medium text-gray-200">Шахи</h4>
+                </div>
+                
+                <div class="glass-card p-6 flex flex-col items-center justify-center text-center rounded-2xl aspect-square">
+                    <i class="fa-solid fa-gamepad text-3xl text-purple-400 mb-3"></i>
+                    <h4 class="font-medium text-gray-200">Геймінг</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 mb-10">
+        <div class="max-w-4xl mx-auto reveal">
+            <div class="glass rounded-3xl p-10 text-center border border-white/10 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary rounded-full mix-blend-screen filter blur-[80px] opacity-30"></div>
+                <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-secondary rounded-full mix-blend-screen filter blur-[80px] opacity-30"></div>
+                
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Готові до <span class="text-gradient">співпраці?</span></h2>
+                <p class="text-gray-300 mb-8 max-w-lg mx-auto">
+                    Якщо ви шукаєте цілеспрямованого фахівця, майбутнього тренера або просто хочете поспілкуватись про технології чи дайвінг — пишіть!
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="mailto:contact@example.com" class="px-8 py-3 rounded-full bg-white text-dark font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-envelope"></i> Написати Email
+                    </a>
+                    <div class="flex gap-4 justify-center mt-4 sm:mt-0">
+                        <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-xl hover:text-primary hover:border-primary/50 transition-all">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-xl hover:text-blue-500 hover:border-blue-500/50 transition-all">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-xl hover:text-pink-500 hover:border-pink-500/50 transition-all">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
+        <p>&copy; <span id="year"></span> Артем Середа. Усі права захищені.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Glass Effect on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('glass', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+</html>
